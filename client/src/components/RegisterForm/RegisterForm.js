@@ -1,10 +1,14 @@
 import React, { useState } from 'react';
-import { Form,Col,Button,InputGroup } from 'react-bootstrap';
+import { Form,Col,Button,InputGroup,Modal } from 'react-bootstrap';
 
 
 
 export default function RegisterForm() {
     const [validated, setValidated] = useState(false);
+    const [show, setShow] = useState(false);
+
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
   
     const handleSubmit = (event) => {
       const form = event.currentTarget;
@@ -17,6 +21,23 @@ export default function RegisterForm() {
     };
   
     return (
+
+    <div>
+      <Button variant="primary" onClick={handleShow}>
+        Register
+      </Button>
+
+        <Modal
+        show={show}
+        onHide={handleClose}
+        backdrop="static"
+        keyboard={false}
+      >
+
+     <Modal.Header closeButton>
+        <Modal.Title>Modal title</Modal.Title>
+    </Modal.Header>
+    <Modal.Body>
       <Form noValidate validated={validated} onSubmit={handleSubmit}>
         <Form.Row>
           <Form.Group as={Col} md="4" controlId="validationCustom01">
@@ -89,5 +110,15 @@ export default function RegisterForm() {
         </Form.Group>
         <Button type="submit">Submit form</Button>
       </Form>
+      </Modal.Body>
+      <Modal.Footer>
+          <Button variant="secondary" onClick={handleClose}>
+            Close
+          </Button>
+          <Button variant="primary">Understood</Button>
+        </Modal.Footer>
+      </Modal>
+      </div>
+
     );
   }

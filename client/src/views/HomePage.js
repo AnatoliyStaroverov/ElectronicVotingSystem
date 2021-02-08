@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import RegisterForm from '../components/RegisterForm/RegisterForm';
+import NavBar from '../components/NavBar/NavBar';
 
 class HomePage extends Component{
   static displayName = HomePage.name;
@@ -7,9 +7,8 @@ class HomePage extends Component{
   render(){
     return (
       <div className="w-100">
-         home page 
-
-         <RegisterForm />
+         <NavBar />
+        
       </div>
     );
   }
