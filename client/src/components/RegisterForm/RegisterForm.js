@@ -22,7 +22,7 @@ export default function RegisterForm() {
       fetch('/register',{
         method: "POST",
         credentials: "include",
-        body: JSON.stringify(event),
+        body: JSON.stringify(form),
         cache: "no-cache",
         headers: new Headers({"content-type": "application/json" })
       
@@ -63,6 +63,7 @@ export default function RegisterForm() {
             <Form.Label>First name</Form.Label>
             <Form.Control
               required
+              name="firstname"
               type="text"
               placeholder="First name"
               defaultValue="Mark"
@@ -73,6 +74,7 @@ export default function RegisterForm() {
             <Form.Label>Last name</Form.Label>
             <Form.Control
               required
+              name="lastname"
               type="text"
               placeholder="Last name"
               defaultValue="Otto"
@@ -86,6 +88,7 @@ export default function RegisterForm() {
                 <InputGroup.Text id="inputGroupPrepend">@</InputGroup.Text>
               </InputGroup.Prepend>
               <Form.Control
+                name="username"
                 type="text"
                 placeholder="Username"
                 aria-describedby="inputGroupPrepend"
