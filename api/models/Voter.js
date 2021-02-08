@@ -1,8 +1,12 @@
 const mongoose = require('mongoose');
 
-const AnimeSchema = mongoose.Schema({
+const VoterSchema = mongoose.Schema({
 
-    name: {
+    firstname: {
+        type: String,
+        required: true,
+    },
+    lastname: {
         type: String,
         required: true,
     },
