@@ -1,0 +1,1 @@
+const Voter = require('../models/Voter');

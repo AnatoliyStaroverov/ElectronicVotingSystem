@@ -18,7 +18,26 @@ export default function RegisterForm() {
       }
   
       setValidated(true);
-    };
+
+      fetch('/register',{
+        method: "POST",
+        credentials: "include",
+        body: JSON.stringify(event),
+        cache: "no-cache",
+        headers: new Headers({"content-type": "application/json" })
+      
+       }).then(function(response){
+        if(response.status == 200){
+          console.log("fetch successfull");
+    
+        }
+        else{
+          console.log(response.status);
+    
+        }
+       }) // end of fetch
+      }
+    
   
     return (
 
@@ -35,7 +54,7 @@ export default function RegisterForm() {
       >
 
      <Modal.Header closeButton>
-        <Modal.Title>Modal title</Modal.Title>
+        <Modal.Title>Register Form</Modal.Title>
     </Modal.Header>
     <Modal.Body>
       <Form noValidate validated={validated} onSubmit={handleSubmit}>
@@ -108,14 +127,11 @@ export default function RegisterForm() {
             feedback="You must agree before submitting."
           />
         </Form.Group>
-        <Button type="submit">Submit form</Button>
+        <Button type="submit">Sign Up</Button>
       </Form>
       </Modal.Body>
       <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
-            Close
-          </Button>
-          <Button variant="primary">Understood</Button>
+         
         </Modal.Footer>
       </Modal>
       </div>

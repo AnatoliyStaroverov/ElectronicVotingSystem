@@ -2,6 +2,7 @@
 import React from 'react';
 import { Navbar,Container, Button } from 'react-bootstrap';
 import RegisterForm from '../RegisterForm/RegisterForm';
+import LoginForm from '../LoginForm/LoginForm';
 
 export default function  NavBar(){
     return (
@@ -15,7 +16,8 @@ export default function  NavBar(){
             <RegisterForm />
         </Navbar.Collapse>
     
-       <Button className="m-2"> Login</Button>
+        <LoginForm />
+       
     
     </Container>
     </Navbar>
