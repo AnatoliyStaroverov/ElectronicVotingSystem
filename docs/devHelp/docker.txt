@@ -1,0 +1,7 @@
+
+ Build docker file  with custom name with the following:
+ >> docker build -t client:latest .
+
+
+ Run container  on a specific port with the following command.
+ >> docker run -p 3000:3000 client
