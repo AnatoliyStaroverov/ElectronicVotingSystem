@@ -3,8 +3,7 @@
 FROM node:10.16-alpine
 
 # Create App Directory
-RUN mkdir -p /usr/src/app
-WORKDIR /usr/src/app
+WORKDIR /api
 
 # Install Dependencies
 COPY package*.json ./
@@ -12,9 +11,9 @@ COPY package*.json ./
 RUN npm install --silent
 
 # Copy app source code
-COPY . .
+COPY . ./
 
 # Exports
-EXPOSE 5000
+EXPOSE 8080
 
-CMD ["npm","start"]
+CMD ["node","server.js"]
