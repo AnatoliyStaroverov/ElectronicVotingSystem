@@ -4,6 +4,8 @@ const path = require('path');
 const cors = require('cors');
 require('dotenv').config();
 const registerRoute = require('./routes/Register');
+const candidateRoute = require('./routes/Candidates');
+const { default: Candidates } = require('../client/src/components/Candidates');
 const app = express();
 
 app.use(cors());
@@ -16,6 +18,8 @@ app.use(express.urlencoded({ extended: false }));
 app.use('/static', express.static(path.join(`${__dirname}/public`)));
 
 app.use('/register', registerRoute);
+
+app.use('/candidate', candidateRoute);
 
 const port = process.env.PORT || 8080;
 
