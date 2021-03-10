@@ -201,7 +201,7 @@ export default function HeaderLinks(props) {
         <Button
           title="Create Account"
           color="transparent"
-          href="components/CreateAccount/CreateAccount.js"
+          href="/create-account"
         >Create Account</Button>
       </ListItem>
       <ListItem className={classes.listItem}>

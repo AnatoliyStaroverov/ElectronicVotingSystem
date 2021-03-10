@@ -1,5 +1,5 @@
 import React from "react";
-// nodejs library that concatenates classes
+// nodejs library that concatenates classes1
 import classNames from "classnames";
 // nodejs library to set properties for components
 import PropTypes from "prop-types";
