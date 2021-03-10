@@ -4,7 +4,7 @@
 # Build react client
 FROM node:10.16-alpine
 
-# Working directory be app
+# Working directory be app1
 WORKDIR /client
 
 COPY package*.json ./
