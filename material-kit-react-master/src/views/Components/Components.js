@@ -61,6 +61,7 @@ export default function Components(props) {
           <GridContainer>
             <GridItem>
               <div className={classes.brand}>
+                <h3 style={{marginLeft: "300px"}}>Polls close in</h3>
                 <h1><Timer date = {`${yr}-11-05T00:00:00`}></Timer></h1>
                 <h3><img className={classes.votingBanner} src={VotingBanner}></img></h3>
               </div>
