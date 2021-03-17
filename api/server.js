@@ -4,7 +4,7 @@ const path = require('path');
 const cors = require('cors');
 require('dotenv').config();
 const registerRoute = require('./routes/Register');
-const candidateRoute = require('./routes/Candidates');
+const candidateRoute = require('./routes/Candidate');
 const { default: Candidates } = require('../client/src/components/Candidates');
 const app = express();
 
