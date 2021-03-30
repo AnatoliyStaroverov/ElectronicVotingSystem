@@ -26,7 +26,14 @@ export default function HeaderLinks(props) {
   const classes = useStyles();
   return (
     <List className={classes.list}>
-      <ListItem className={classes.listItem} style={{ paddingRight: "100px" }}>
+      <ListItem className={classes.listItem} style={{ paddingRight: "60px" }}>
+        <Button
+          title="Home"
+          color="transparent"
+          href="/"
+        >Home</Button>
+      </ListItem>
+      <ListItem className={classes.listItem} style={{ paddingRight: "60px" }}>
         <CustomDropdown
           noLiPadding
           style={{ maxHeight: "300px" }}
@@ -190,14 +197,16 @@ export default function HeaderLinks(props) {
           ]}
         />
       </ListItem>
-      <ListItem className={classes.listItem} style={{ paddingRight: "100px" }}>
+      
+      <ListItem className={classes.listItem} style={{ paddingRight: "60px" }}>
         <Button
           title="Election Map"
           color="transparent"
-          href="components/ElectionMap/ElectionMap.js"
+          href="/voting-map"
         >Election Map</Button>
       </ListItem>
-      <ListItem className={classes.listItem} className={classes.listItem} style={{ paddingRight: "100px" }}>
+      
+      <ListItem className={classes.listItem} className={classes.listItem} style={{ paddingRight: "60px" }}>
         <Button
           title="Create Account"
           color="transparent"

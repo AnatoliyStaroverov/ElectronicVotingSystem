@@ -28,6 +28,15 @@ const basicsStyle = {
     marginRight: "100px",
 
   },
+  votingMap:
+  {
+    marginLeft: "0px",
+    marginRight: "0px",
+    margin: "auto",
+    display: "block",
+    height: "700px",
+
+  },
   icons: {
     width: "17px",
     height: "17px",
