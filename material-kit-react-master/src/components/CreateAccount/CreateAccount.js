@@ -136,8 +136,7 @@ export default function CreateAccount(props) {
     if (event.target.id == "demo-simple-select-required") {
       //Do we have to do this for each state? 
       value = event.target.value == "AL";
-
-  }
+    }
     this.setState({ [name]: value });
   }
 
