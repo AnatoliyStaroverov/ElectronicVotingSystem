@@ -1,4 +1,4 @@
-const Candidates = require('../models/Candidates');
+const Candidates = require('../models/Candidate');
 
 
 // post candidates data to database.

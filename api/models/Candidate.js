@@ -28,4 +28,4 @@ const CandidateSchema = mongoose.Schema({
     },
 });
 
-module.exports = mongoose.model('series', CandidateSchema);
+module.exports = mongoose.model('canidate', CandidateSchema);
