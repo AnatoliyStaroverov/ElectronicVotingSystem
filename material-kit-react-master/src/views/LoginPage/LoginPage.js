@@ -18,12 +18,16 @@ import CardBody from "components/Card/CardBody.js";
 import CardHeader from "components/Card/CardHeader.js";
 import CardFooter from "components/Card/CardFooter.js";
 import CustomInput from "components/CustomInput/CustomInput.js";
+import styles1 from "assets/jss/material-kit-react/views/components.js";
+
 
 import styles from "assets/jss/material-kit-react/views/loginPage.js";
+import Parallax from "components/Parallax/Parallax.js";
 
-import image from "assets/img/bg7.jpg";
+
 
 const useStyles = makeStyles(styles);
+const useStyles1 = makeStyles(styles1);
 
 export default function LoginPage(props) {
   const [cardAnimaton, setCardAnimation] = React.useState("cardHidden");
@@ -31,62 +35,45 @@ export default function LoginPage(props) {
     setCardAnimation("");
   }, 700);
   const classes = useStyles();
+  const classes1 = useStyles1();
+
   const { ...rest } = props;
   return (
     <div>
+      <div>
       <Header
-        absolute
-        color="transparent"
-        brand="Material Kit React"
-        rightLinks={<HeaderLinks />}
-        {...rest}
-      />
-      <div
-        className={classes.pageHeader}
-        style={{
-          backgroundImage: "url(" + image + ")",
-          backgroundSize: "cover",
-          backgroundPosition: "top center"
-        }}
-      >
-        <div className={classes.container}>
+          //brand="Material Kit React"
+          rightLinks={<HeaderLinks />}
+          fixed
+          color="transparent"
+          changeColorOnScroll={{
+            height: 400,
+            color: "white"
+          }}
+          {...rest}
+        />
+       <Parallax image={require("assets/img/Background_Blue.png")} style={{ height: "1020px" }}>
+          <div className={classes1.container} style={{ marginRight: "0px", marginTop: "0px" }}>
+            <GridContainer>
+              <GridItem>
+                <div className={classes1.brand}>
+
+                </div>
+              </GridItem>
+            </GridContainer>
+          </div>
+        </Parallax>
+        </div>
+        <div className={classes.container} style={{marginTop: '-68%'}}>
           <GridContainer justify="center">
             <GridItem xs={12} sm={12} md={4}>
               <Card className={classes[cardAnimaton]}>
                 <form className={classes.form}>
-                  <CardHeader color="primary" className={classes.cardHeader}>
+                  <CardHeader style={{backgroundColor:"#b2102f", color:"white"}} className={classes.cardHeader}>
                     <h4>Login</h4>
-                    <div className={classes.socialLine}>
-                      <Button
-                        justIcon
-                        href="#pablo"
-                        target="_blank"
-                        color="transparent"
-                        onClick={e => e.preventDefault()}
-                      >
-                        <i className={"fab fa-twitter"} />
-                      </Button>
-                      <Button
-                        justIcon
-                        href="#pablo"
-                        target="_blank"
-                        color="transparent"
-                        onClick={e => e.preventDefault()}
-                      >
-                        <i className={"fab fa-facebook"} />
-                      </Button>
-                      <Button
-                        justIcon
-                        href="#pablo"
-                        target="_blank"
-                        color="transparent"
-                        onClick={e => e.preventDefault()}
-                      >
-                        <i className={"fab fa-google-plus-g"} />
-                      </Button>
-                    </div>
+                   
                   </CardHeader>
-                  <p className={classes.divider}>Or Be Classical</p>
+                  <p className={classes.divider}>Login to Start Voting Today!</p>
                   <CardBody>
                     <CustomInput
                       labelText="First Name..."
@@ -138,8 +125,8 @@ export default function LoginPage(props) {
                     />
                   </CardBody>
                   <CardFooter className={classes.cardFooter}>
-                    <Button simple color="primary" size="lg">
-                      Get started
+                    <Button simple style={{color:"#b2102f"}} size="lg">
+                      Login 
                     </Button>
                   </CardFooter>
                 </form>
@@ -149,6 +136,6 @@ export default function LoginPage(props) {
         </div>
         <Footer whiteFont />
       </div>
-    </div>
+    
   );
 }
