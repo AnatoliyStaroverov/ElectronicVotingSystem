@@ -26,6 +26,10 @@ const CandidateSchema = mongoose.Schema({
         type: String,
         required: true,
     },
+    VoteCount: {
+        type: Number,
+        required: true,
+    }
 });
 
 module.exports = mongoose.model('canidate', CandidateSchema);

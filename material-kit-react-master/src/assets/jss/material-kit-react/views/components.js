@@ -43,6 +43,14 @@ const componentsStyle = {
     boxShadow:
       "0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.2)"
   },
+  mainRaised3: {
+    margin: "-60px 42px 0px",
+    marginTop: "-877px",
+    height: "800px",
+    borderRadius: "6px",
+    boxShadow:
+      "0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.2)"
+  },
   subtitles_createAccount:
   {
     fontSize: "14pt",
@@ -55,6 +63,7 @@ const componentsStyle = {
   link: {
     textDecoration: "none"
   },
+  
   //textCenter: {
     //textAlign: "center"
   //}

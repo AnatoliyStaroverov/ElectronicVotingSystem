@@ -20,6 +20,8 @@ app.use('/register', registerRoute);
 
 app.use('/candidate', candidateRoute);
 
+app.use('/statistics', statisticsRoute);
+
 const port = process.env.PORT || 8080;
 
 var mongoDb = 'mongodb://127.0.0.1:27017/SecureVote';
