@@ -1,104 +1,43 @@
-import './assets/tailwind.css'; 
+import React, { Component } from 'react';
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import "bootstrap/dist/css/bootstrap.min.css";
 
-import React from 'react'; 
+import CreateTodo from "./components/create-todo.component";
+import EditTodo from "./components/edit-todo.component";
+import TodosList from "./components/todos-list.component";
 
-import Home from './components/Home'; 
-import Login from './components/Login'; 
-import Candidates from './components/Candidates'; 
-import CreateAccount from './components/CreateAccount'; 
-import Map from './components/Map'; 
-import VotingBallot from './components/VotingBallot'; 
-import Logout from './components/Logout'; 
-import Timer from './components/Timer'; 
-import MenuItems from './components/MenuItems'; 
+import logo from "./logo.png";
 
+class App extends Component {
+  render() {
+    return (
+      <Router>
+        <div className="container">
+          
+          <nav className="navbar navbar-expand-lg navbar-light bg-light">
+            <a className="navbar-brand" href="https://codingthesmartway.com" target="_blank">
+              <img src={logo} width="30" height="30" alt="CodingTheSmartWay.com" />
+            </a>
+            <Link to="/" className="navbar-brand">MERN-Stack Todo App</Link>
+            <div className="collpase nav-collapse">
+              <ul className="navbar-nav mr-auto">
+                <li className="navbar-item">
+                  <Link to="/" className="nav-link">Todos</Link>
+                </li>
+                <li className="navbar-item">
+                  <Link to="/create" className="nav-link">Create Todo</Link>
+                </li>
+              </ul>
+            </div>
+          </nav>
 
-
-export default class App extends React.Component
-{
-  constructor(props) {
-    super(props);
-
-    // Global app state.
-    this.state = {
-      username: '',
-      page: 'home',
-    }
-
-    this.onNavSelect = this.onNavSelect.bind(this);
-    this.doStateChange = this.doStateChange.bind(this);
-  }
-
-  // This function is called when someone clicks on a button in the navbar.
-  onNavSelect(page) {
-    this.setState({page});
-  }
-
-  doStateChange(name, value) {
-    if (name === 'page') {
-      this.onNavSelect(value);
-      return;
-    }
-
-    this.setState({[name]: value});
-  }
-  render(){
-    const pages = {
-      'The Candidates': (
-        <Candidates
-          data-testid = "page-candidates"
-        ></Candidates>
-      ),
-      'Electoral Map': (
-        <Map
-          data-testid="page-map"
-        ></Map>
-      ),
-      'Create Account': (
-        <CreateAccount
-          data-testid="page-createAccount"
-          doStateChange={this.doStateChange}
-        >
-        </CreateAccount>
-      ),
-      'Login': (
-        <Login onNavSelect={this.onNavSelect}
-          data-testid="page-login"
-          doStateChange={this.doStateChange}
-        ></Login>
-      ),
-      
-      'votingBallot': (
-        <VotingBallot 
-          data-testid="page-votingBallot"
-          username={this.state.username}>
-        </VotingBallot>
-      ),
-    }
-
-    if (this.state.username) {
-      delete pages['login'];
-      delete pages['createAccount'];
-      pages['logout'] = (<Logout onNavSelect={this.onNavSelect} doStateChange={this.doStateChange}></Logout>)
-    } else {
-      delete pages['votingBallot'];
-    }
-  
-    return(
-      <main>
-        <Home></Home>
-        <MenuItems
-          items={Object.keys(pages)}
-          active={this.state.page}
-          onNavSelect={this.onNavSelect}
-        ></MenuItems>
-        
-  
-        {pages[this.state.page]}
-        
-      </main>
+          <Route path="/" exact component={TodosList} />
+          <Route path="/edit/:id" component={EditTodo} />
+          <Route path="/create" component={CreateTodo} />
+        </div>
+      </Router>
     );
   }
- 
-
 }
+
+export default App;
