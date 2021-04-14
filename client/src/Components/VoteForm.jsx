@@ -1,13 +1,17 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import Timer from './Timer.jsx';
-import VotingBanner from "../Images/voting-banner.png";
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
-import statesImg from "../Images/HomePage_RedBlue_Map.jpg";
 import { useAuth0 } from "@auth0/auth0-react";
-import VoteForm from "./VoteForm.jsx";
+import { makeStyles } from '@material-ui/core/styles';
+import CardHeader from '@material-ui/core/CardHeader';
+import Avatar from '@material-ui/core/Avatar';
+import VoteSpec from "./VoteSpec.jsx";
+import Typography from '@material-ui/core/Typography';
 const useStyles = makeStyles((theme) => ({
+    formControl: {
+        margin: theme.spacing(1),
+        minWidth: 120,
+      },
     root: {
         flexGrow: 1,
         display: "flex",
@@ -58,39 +62,39 @@ const useStyles = makeStyles((theme) => ({
         fontSize: '31pt',
         marginTop: '10px',
     },
-    statesImg:
-    {
-        width: "390px",
-        float: "right",
-        marginTop: "-206px",
-        marginRight: "217px",
-    },
+    pos: {
+        fontSize: 25,
+      },
 
 }));
 
-export default function HomePage() {
+
+export default function VoteForm() {
     const classes = useStyles();
-    const currDate = new Date();
-    const { isAuthenticated } = useAuth0();
-    const yr = (currDate.getMonth() === 12 && currDate.getDate() > 5) ? currDate.getFullYear() + 4 : currDate.getFullYear();
+    const { user, isAuthenticated } = useAuth0();
+
     return (
         <div>
         { isAuthenticated ? 
-           <div> <VoteForm /> </div>
-          : <div><h2 className={classes.smallTitle}>Polls Close:</h2>
-          <h1 className={classes.TimerStyle}><Timer date={`${yr}-11-05T00:00:00`}></Timer></h1>
-          <h3><img className={classes.votingBanner} src={VotingBanner}></img></h3>
-          <Card className={classes.CardStyle}>
+            <div>
+              <Card className={classes.CardStyle}>
+                <CardHeader
+                    avatar={<Avatar aria-label="recipe" className={classes.avatar}></Avatar> }
+                    title={ "Welcome "  + user.name}
+                    subheader={user.email}
+                    />
+                     <Typography ml={3}  mt={3} className={classes.pos} color="textSecondary">
+                        Cast Your Vote Here
+                        </Typography>
+                <VoteSpec />
                 <CardContent className={classes.CardStyle}>
-                    <h2 className={classes.title2}>Create an Account or</h2>
-                    <h2 className={classes.title2}>Login to Vote Today!</h2>
-                    <h2><img src={statesImg} className={classes.statesImg}></img></h2>
                 </CardContent>
+
+                <VoteSpec />
             </Card>
-          </div>
+            </div>
+          : <div> You are not logined with Auth0</div>
         }
         </div>
     );
 }
-
-

@@ -1,77 +1,74 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
+import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
-import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
+import Grid from '@material-ui/core/Grid';
+import Typography from '@material-ui/core/Typography';
 import { useAuth0 } from "@auth0/auth0-react";
 
+const useStyles = makeStyles({
+  root: {
+    minWidth: 1000,
+    display:'flex',
+    justifyContent:'center',
+   
+  },
 
-const styles = {
-    CardStyle: {
-        width: "40%",
-        marginLeft: "0px",
-        marginRight: "0px",
-        margin: "auto",
-        marginTop: "140px",
-        height: "400px",
-
-    },
-    root: {
-        flexGrow: 1,
-        display: "flex",
-        justifyContent: 'center',
-        marginTop: '20px',
-    },
-    LoginHeader:
-    {
-        display: "flex",
-        justifyContent:"center",
-        marginTop: "-112px",
-        color: "red",
-
-    },
-    Username:
-    {
-        width: "468px",
-        margin: "auto",
-        marginLeft:"-122px",
-        marginTop:"40px",
-    },
-    Password:
-    {
-        width: "468px",
-        margin: "auto",
-        marginLeft:"-122px",
-        marginTop:"40px",
-    },
-    buttonStyle:
-    {
-        marginTop: "43px",
-        width: "472px",
-        marginLeft: "-120px",
-    }
-
-}
-const useStyles = makeStyles(styles);
-
+  title: {
+    fontSize: 16,
+  },
+  pos: {
+    marginBottom: 5,
+  },
+});
 
 export default function LoginPage() {
-    const classes = useStyles();
-    const { loginWithRedirect } = useAuth0();
-    const { logout } = useAuth0();
-    return (
-        <div>
-            <Card style={{ marginLeft: "0px", marginRight: "0px", margin: 'auto', marginTop: "120px", }} className={classes.CardStyle}>
-                <CardContent style={{ marginLeft: "0px", marginRight: "0px", margin: 'auto', marginTop: "140px", }} className={classes.CardStyle}>
-                    <h2 className={classes.LoginHeader}>Login to Vote Today!</h2>
-                    <TextField className={classes.Username} id="standard-basic" label="Username" />
-                    <TextField className={classes.Password} id="standard-basic" label="Password" />
-                    <Button className={classes.buttonStyle}variant="contained" color="secondary" type="submit">Login</Button>
-                </CardContent>
-            </Card>
-            <button onClick={() => loginWithRedirect()}>Log In</button>
-            <button onClick={() => logout({ returnTo: window.location.origin })}>logout</button>
-        </div>
-    );
+  const classes = useStyles();
+  const bull = <span className={classes.bullet}>•</span>;
+  const { loginWithRedirect } = useAuth0();
+  const { logout } = useAuth0();
+
+  return (
+    <Grid
+        container
+        spacing={0}
+        direction="column"
+        alignItems="center"
+        justify="center"
+        style={{ minHeight: '100vh'  }}
+        >
+    <Grid item xs={12}>
+    <Card className={classes.root} >
+      <CardContent>
+        <Typography className={classes.title} color="textSecondary" gutterBottom>
+          Thank you for voting with Us!
+        </Typography>
+        <Typography variant="h5" component="h2">
+          Login or Register to Vote
+        </Typography>
+        <Typography className={classes.pos} color="textSecondary">
+          Login through our secure Auth0 Provider
+        </Typography>
+        <Typography variant="body2" component="p">
+          Once a new account is created, an email will be sent to you to verifiy your account.
+          <br />
+        
+        </Typography>
+      </CardContent>
+      <CardActions>
+         <Button 
+         fullWidth
+         variant="outlined" 
+         color="primary" 
+         onClick={() => loginWithRedirect()}
+         > Auth0 Log In
+         </Button>
+      </CardActions>
+    </Card>
+    </Grid>
+    </Grid>
+   
+  );
 }
