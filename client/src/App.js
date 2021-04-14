@@ -8,6 +8,8 @@ import VotingMap from "./Components/VotingMap.jsx";
 import MenuItems from "./Components/MenuItems.jsx";
 
 
+
+
 export default class App extends React.Component {
    constructor(props) {
     super(props);

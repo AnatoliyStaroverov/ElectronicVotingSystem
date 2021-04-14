@@ -4,6 +4,7 @@ import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
+import { useAuth0 } from "@auth0/auth0-react";
 
 
 const styles = {
@@ -57,6 +58,8 @@ const useStyles = makeStyles(styles);
 
 export default function LoginPage() {
     const classes = useStyles();
+    const { loginWithRedirect } = useAuth0();
+    const { logout } = useAuth0();
     return (
         <div>
             <Card style={{ marginLeft: "0px", marginRight: "0px", margin: 'auto', marginTop: "120px", }} className={classes.CardStyle}>
@@ -67,6 +70,8 @@ export default function LoginPage() {
                     <Button className={classes.buttonStyle}variant="contained" color="secondary" type="submit">Login</Button>
                 </CardContent>
             </Card>
+            <button onClick={() => loginWithRedirect()}>Log In</button>
+            <button onClick={() => logout({ returnTo: window.location.origin })}>logout</button>
         </div>
     );
 }

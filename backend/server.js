@@ -6,12 +6,15 @@ const mongoose = require('mongoose');
 const todoRoutes = express.Router();
 const PORT = 4000;
 
-let Todo = require('./voter.model');
+let Voter= require('./newVoteSecure.model');
 
 app.use(cors());
 app.use(bodyParser.json());
 
 mongoose.connect('mongodb://127.0.0.1:27017/newVoteSecure', { useNewUrlParser: true });
+//mongoose.connect('mongodb+srv://AnatoliyStaroverov:OU8vm34nxk2KibgW@cluster0.hcv6q.mongodb.net/myFirstDatabase?retryWrites=true&w=majority', { useNewUrlParser: true });
+
+
 const connection = mongoose.connection;
 
 connection.once('open', function() {
@@ -54,10 +57,10 @@ todoRoutes.route('/update/:id').post(function(req, res) {
     });
 });
 
-todoRoutes.route('/add').post(function(req, res) {
-    let todo = new Todo(req.body);
-    todo.save()
-        .then(todo => {
+todoRoutes.route('/Register').post(function(req, res) {
+    let newVoter = new Voter(req.body);
+    newVoter.save()
+        .then(newVoter => {
             res.status(200).json({'todo': 'todo added successfully'});
         })
         .catch(err => {
@@ -65,7 +68,7 @@ todoRoutes.route('/add').post(function(req, res) {
         });
 });
 
-app.use('/todos', todoRoutes);
+app.use('/newVoteSecure', todoRoutes);
 
 app.listen(PORT, function() {
     console.log("Server is running on Port: " + PORT);

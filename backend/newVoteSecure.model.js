@@ -28,4 +28,4 @@ let Voter = new Schema({
     }
 });
 
-module.exports = mongoose.model('Voter', Voter);
+module.exports = mongoose.model('newVoteSecure', Voter);

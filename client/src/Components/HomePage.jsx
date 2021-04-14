@@ -7,7 +7,7 @@ import VotingBanner from "../Images/voting-banner.png";
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import statesImg from "../Images/HomePage_RedBlue_Map.jpg";
-
+import { useAuth0 } from "@auth0/auth0-react";
 const useStyles = makeStyles((theme) => ({
     root: {
         flexGrow: 1,
@@ -72,10 +72,19 @@ const useStyles = makeStyles((theme) => ({
 export default function HomePage() {
     const classes = useStyles();
     const currDate = new Date();
+    const { user, isAuthenticated, isLoading } = useAuth0();
     const yr = (currDate.getMonth() === 12 && currDate.getDate() > 5) ? currDate.getFullYear() + 4 : currDate.getFullYear();
 
     return (
         <div>
+        { isAuthenticated && (
+            <div>
+              <img src={user.picture} alt={user.name} />
+              <h2>{user.name}</h2>
+              <p>{user.email}</p>
+            </div>
+          )}
+        
             
             <h2 className={classes.smallTitle}>Polls Close:</h2>
             <h1 className={classes.TimerStyle}><Timer date={`${yr}-11-05T00:00:00`}></Timer></h1>
@@ -85,6 +94,8 @@ export default function HomePage() {
                 <CardContent className={classes.CardStyle}>
                     <h2 className={classes.title2}>Create an Account or</h2>
                     <h2 className={classes.title2}>Login to Vote Today!</h2>
+                   
+       
                     <h2><img src={statesImg} className={classes.statesImg}></img></h2>
                 </CardContent>
             </Card>

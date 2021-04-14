@@ -15,6 +15,7 @@ import React, { useState } from 'react';
 import DatePicker from '@material-ui/lab/DatePicker';
 import { Form, } from 'react-bootstrap';
 import 'date-fns';
+import axios from 'axios';
 
 
 const styles3 = {
@@ -141,30 +142,22 @@ export default function CreateAccount(props) {
       setDropDownValue(event.target.value);
     };
 
-    const handleSubmit = (event) => {
-        const form = event.currentTarget;
-        if (form.checkValidity() === false) {
-            event.preventDefault();
-            event.stopPropagation();
-        }
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        const form = e.currentTarget;
+       
+        const clientBody = {
+            firstname:form.firstname.value,
+            lastname: form.lastname.value,
+            username:form.username.value,
+            City:  form.City.value,
+            State:form.State.value,
+            ZipCode: form.zipcode.value
+        };
+        console.log(clientBody);
 
-        setValidated(true);
-
-        fetch('/register', {
-            method: "POST",
-            credentials: "include",
-            body: JSON.stringify(form),
-            cache: "no-cache",
-            headers: new Headers({ "content-type": "application/json" })
-
-        }).then(function (response) {
-            if (response.status === 200) {
-                console.log("fetch successfull");
-            }
-            else {
-                console.log(response.status);
-            }
-        }) // end of fetch
+        axios.post('http://localhost:4000/newVoteSecure/Register', clientBody )
+            .then(res => console.log(res.data));
     }
 
     return (
@@ -176,11 +169,15 @@ export default function CreateAccount(props) {
                     <Form noValidate validated={validated} onSubmit={handleSubmit}>
                         <GridContainer style={{ marginTop: "0px", }}>
                             <GridItem xs={12} sm={12} md={3} style={{ marginRight: "100px", marginLeft: "40px" }}>
-                                <TextField style={{ width: "348px" }} id="standard-basic" label="First Legal Name" />
+                                <TextField style={{ width: "348px" }} 
+                                id="standard-basic"
+                                 label="First Legal Name" 
+                                 name="firstname"/>
                             </GridItem>
 
                             <GridItem xs={12} sm={12} md={3} style={{ marginRight: "100px" }}>
-                                <TextField style={{ width: "348px" }} id="standard-basic" label="Last Name" />
+                                <TextField style={{ width: "348px" }} id="standard-basic" label="Last Name" 
+                                 name="lastname"/>
                             </GridItem>
 
                             <GridItem xs={12} sm={12} md={3} style={{ marginTop: "0px" }}>
@@ -204,7 +201,7 @@ export default function CreateAccount(props) {
                             </GridItem>
 
                             <GridItem xs={12} sm={12} md={3} style={{ marginRight: "40px" }}>
-                                <TextField style={{ width: "250px" }} id="standard-basic" label="City" />
+                                <TextField style={{ width: "250px" }} id="standard-basic" label="City" name="City" />
                             </GridItem>
 
                             <GridItem xs={12} sm={12} md={3} style={{ marginLeft: "-32px", width: "142px" }}>
@@ -216,6 +213,7 @@ export default function CreateAccount(props) {
                                         value={DDvalue}
                                         onChange={handleChange}
                                         label="State"
+                                        name="State"
                                     >
                                         <MenuItem value={true}>AL</MenuItem>
                                         <MenuItem value={true}>AK</MenuItem>
@@ -272,7 +270,8 @@ export default function CreateAccount(props) {
                             </GridItem>
 
                             <GridItem xs={12} sm={12} md={3} style={{ marginLeft: "11px", width: "133px" }}>
-                            <TextField style={{ width: "150px", marginLeft: "27px", }} id="standard-basic" label="Zip Code" />
+                            <TextField style={{ width: "150px", marginLeft: "27px", }} id="standard-basic" label="Zip Code"
+                             name="zipcode" />
                             </GridItem>
                             
                             <GridItem xs={12} sm={12} md={3} style={{ marginRight: "100px", marginLeft: "40px" }}>
@@ -287,7 +286,7 @@ export default function CreateAccount(props) {
                         <h1 className={classes3.subtitles_createAccount}>Account Information</h1>
                         <GridContainer style={{ marginTop: "0px", }}>
                             <GridItem xs={12} sm={12} md={3} style={{ marginRight: "100px", marginLeft: "40px" }}>
-                            <TextField style={{ width: "348px" }} id="standard-basic" label="Username" />
+                            <TextField style={{ width: "348px" }} id="standard-basic" label="Username" name="username" />
                             </GridItem>
                             
                             <GridItem xs={12} sm={12} md={3} style={{ marginRight: "100px", }}>
