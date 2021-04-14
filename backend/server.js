@@ -48,14 +48,59 @@ todoRoutes.route('/addCandidate').post(function(req, res) {
         });
 });
 
-todoRoutes.route('/:id').get(function(req, res) {
-    let id = req.params.id;
-    Todo.findById(id, function(err, todo) {
-        res.json(todo);
+// get all canidates
+todoRoutes.route('/getAlladdCandidate').get(function(req, res) {
+    Candidate.find(function(err, Candidate) {
+        if (err) {
+            console.log(err);
+        } else {
+            res.json(Candidate);
+        }
     });
 });
 
-todoRoutes.route('/update/:id').post(function(req, res) {
+// get canidate by state
+todoRoutes.route('getCandidate/:state').get(function(req, res) {
+    let id = req.params.state;
+    Candidate.findById(id, function(err, Candidate) {
+        res.json(Candidate);
+    });
+});
+
+// get canidate by party
+todoRoutes.route('getCandidate/:party').get(function(req, res) {
+    let id = req.params.party;
+    Candidate.findById(id, function(err, Candidate) {
+        res.json(Candidate);
+    });
+});
+
+// get canidate by VoteCount
+todoRoutes.route('getCandidate/:VoteCount').get(function(req, res) {
+    let id = req.params.VoteCount;
+    Candidate.findById(id, function(err, Candidate) {
+        res.json(Candidate);
+    });
+});
+
+
+
+
+// App specific routes
+todoRoutes.route('/Register').post(function(req, res) {
+    let newVoter = new Voter(req.body);
+    newVoter.save()
+        .then(newVoter => {
+            res.status(200).json({'todo': 'todo added successfully'});
+        })
+        .catch(err => {
+            res.status(400).send('adding new todo failed');
+        });
+});
+
+
+// to be implemented update canidate
+todoRoutes.route('/updateCanidate/:id').post(function(req, res) {
     Todo.findById(req.params.id, function(err, todo) {
         if (!todo)
             res.status(404).send("data is not found");
@@ -74,32 +119,16 @@ todoRoutes.route('/update/:id').post(function(req, res) {
     });
 });
 
+// stats Routes .
+// 1. Get state winners
+// 2. get party winners 
 
-// App specific routes
-todoRoutes.route('/Register').post(function(req, res) {
-    let newVoter = new Voter(req.body);
-    newVoter.save()
-        .then(newVoter => {
-            res.status(200).json({'todo': 'todo added successfully'});
-        })
-        .catch(err => {
-            res.status(400).send('adding new todo failed');
-        });
-});
-
-todoRoutes.route('/add').post(function(req, res) {
-    let todo = new Todo(req.body);
-    todo.save()
-        .then(todo => {
-            res.status(200).json({'todo': 'todo added successfully'});
-        })
-        .catch(err => {
-            res.status(400).send('adding new todo failed');
-        });
-});
+// Canidate Routes
+// 1. display vote count per state
+// 2. display vote count per party of state.
 
 app.use('/newVoteSecure', todoRoutes);
-app.use('/newCandidate', todoRoutes);
+app.use('/Candidate', todoRoutes);
 
 app.listen(PORT, function() {
     console.log("Server is running on Port: " + PORT);
