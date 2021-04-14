@@ -12,7 +12,6 @@ let Candidate= require('./candidate.model');
 app.use(cors());
 app.use(bodyParser.json());
 
-
 // connection to database 
 mongoose.connect('mongodb://127.0.0.1:27017/newVoteSecure', { useNewUrlParser: true });
 //mongoose.connect('mongodb+srv://AnatoliyStaroverov:OU8vm34nxk2KibgW@cluster0.hcv6q.mongodb.net/myFirstDatabase?retryWrites=true&w=majority', { useNewUrlParser: true });
@@ -22,7 +21,7 @@ connection.once('open', function() {
 })
 
 // project specific routes
-todoRoutes.route('/Candidate').post(function(req, res) {
+todoRoutes.route('/addCandidate').post(function(req, res) {
     let newCandidate = new Candidate(req.body);
     newCandidate.save()
         .then(newCandidate => {
