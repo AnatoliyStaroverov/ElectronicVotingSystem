@@ -6,7 +6,7 @@ const mongoose = require('mongoose');
 const todoRoutes = express.Router();
 const PORT = 4000;
 
-let Voter= require('./newVoteSecure.model');
+let Voter= require('./models/newVoteSecure.model');
 let Candidate= require('./candidate.model');
 
 app.use(cors());
@@ -20,6 +20,22 @@ connection.once('open', function() {
     console.log("MongoDB database connection established successfully");
 })
 
+/** 
+ * const db = require("./models");
+db.mongoose
+  .connect(db.url, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+  })
+  .then(() => {
+    console.log("Connected to the database!");
+  })
+  .catch(err => {
+    console.log("Cannot connect to the database!", err);
+    process.exit();
+  });
+ * 
+*/
 // project specific routes
 todoRoutes.route('/addCandidate').post(function(req, res) {
     let newCandidate = new Candidate(req.body);
