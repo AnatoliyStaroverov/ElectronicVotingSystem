@@ -7,7 +7,7 @@ const todoRoutes = express.Router();
 const PORT = 4000;
 
 let Voter= require('./models/newVoteSecure.model');
-let Candidate= require('./candidate.model');
+let Candidate= require('./models/candidate.model');
 
 app.use(cors());
 app.use(bodyParser.json());
