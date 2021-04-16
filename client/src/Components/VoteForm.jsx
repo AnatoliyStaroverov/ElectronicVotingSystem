@@ -29,29 +29,8 @@ const useStyles = makeStyles((theme) => ({
         justifyContent: 'center',
         marginTop: '4%',
     },
-    TimerStyle:
-    {
-        display: 'flex',
-        color: 'white',
-        justifyContent: 'center',
-        fontSize: "30pt",
-        marginTop: "3%",
-
-    },
-    votingBanner:
-    {
-        height: "148px",
-        display: 'flex',
-        justifyContent: 'center',
-        marginRight: "auto",
-        marginLeft: 'auto',
-        marginTop: "50px",
-    },
     CardStyle: {
-        //minWidth: 275,
-        //marginTop: '65px',
-        //height: '200px',
-        height: '350px',
+        height: '440px',
         marginLeft: '3%',
         marginRight: '3%',
         marginTop: '48px',
@@ -63,8 +42,13 @@ const useStyles = makeStyles((theme) => ({
         marginTop: '10px',
     },
     pos: {
-        fontSize: 25,
+        display:"flex",
+        justifyContent:"center",
+        fontSize:"15pt",
+        fontWeight: 700,
+        color:"blue",
       },
+  
 
 }));
 
@@ -79,12 +63,12 @@ export default function VoteForm() {
             <div>
               <Card className={classes.CardStyle}>
                 <CardHeader
-                    avatar={<Avatar aria-label="recipe" className={classes.avatar}></Avatar> }
+                    avatar={<Avatar aria-label="recipe" ></Avatar> }
                     title={ "Welcome "  + user.name}
                     subheader={user.email}
                     />
                      <Typography ml={3}  mt={3} className={classes.pos} color="textSecondary">
-                        Cast Your Vote Here
+                        Complete the Ballot Below to Cast Your Vote! 
                         </Typography>
                 <VoteSpec />
                 <CardContent className={classes.CardStyle}>

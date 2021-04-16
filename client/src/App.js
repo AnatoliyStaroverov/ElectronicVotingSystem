@@ -4,19 +4,21 @@ import TheCandidates from "./Components/TheCandidates.jsx";
 import LoginPage from "./Components/LoginPage.jsx";
 import VotingMap from "./Components/VotingMap.jsx";
 import MenuItems from "./Components/MenuItems.jsx";
+import CreateAccount from "./Components/CreateAccount.jsx";
+import VotingBallot from "./Components/VoteSpec.jsx";
 
 
 //  <button onClick={() => logout({ returnTo: window.location.origin })}>logout</button>
 
 export default class App extends React.Component {
-   constructor(props) {
+  constructor(props) {
     super(props);
 
     // Global app state.
     this.state = {
       username: '',
       page: 'Home',
-      islogin:false
+      islogin: false
     }
 
     this.onNavSelect = this.onNavSelect.bind(this);
@@ -26,7 +28,7 @@ export default class App extends React.Component {
 
   // This function is called when someone clicks on a button in the navbar.
   onNavSelect(page) {
-    this.setState({page});
+    this.setState({ page });
   }
 
 
@@ -37,19 +39,19 @@ export default class App extends React.Component {
       return;
     }
 
-    this.setState({[name]: value});
+    this.setState({ [name]: value });
   }
 
   // menu state here
   render() {
     const notLoginedPages = {
       'Home': (
-       <HomePage
-         data-test-id="page-home"
-       ></HomePage>
-      ), 
+        <HomePage
+          data-test-id="page-home"
+        ></HomePage>
+      ),
       'The Candidates': (
-    
+
         <TheCandidates
           data-testid="page-candidates"
         ></TheCandidates>
@@ -61,21 +63,22 @@ export default class App extends React.Component {
         >
         </VotingMap>
       ),
-  
+
       'Login / Register': (
         <LoginPage />
-       
+
       ),
+
     }
 
     const LoginedPages = {
       'Home': (
-       <HomePage
-         data-test-id="page-home"
-       ></HomePage>
-      ), 
+        <HomePage
+          data-test-id="page-home"
+        ></HomePage>
+      ),
       'The Candidates': (
-    
+
         <TheCandidates
           data-testid="page-candidates"
         ></TheCandidates>
@@ -87,39 +90,43 @@ export default class App extends React.Component {
         >
         </VotingMap>
       ),
-  
+       'VOTE' :(
+        <VotingBallot></VotingBallot>
+      ), 
+
       'Logout': (
         <LoginPage />
-       
+
       ),
+
     }
 
 
     return (
       <main>
         { this.state.islogin == false ?
-        <MenuItems
-          items={Object.keys(notLoginedPages)}
-          active={this.state.page}
-          onNavSelect={this.onNavSelect}
-        >
-        </MenuItems> 
-        :
-        <MenuItems
-        items={Object.keys(LoginedPages)}
-        active={this.state.page}
-        onNavSelect={this.onNavSelect}
-      >
-      </MenuItems>
-      }
-        {this.state.islogin ? LoginedPages[this.state.page]:
-        notLoginedPages [this.state.page] }
+          <MenuItems
+            items={Object.keys(notLoginedPages)}
+            active={this.state.page}
+            onNavSelect={this.onNavSelect}
+          >
+          </MenuItems>
+          :
+          <MenuItems
+            items={Object.keys(LoginedPages)}
+            active={this.state.page}
+            onNavSelect={this.onNavSelect}
+          >
+          </MenuItems>
+        }
+        {this.state.islogin ? LoginedPages[this.state.page] :
+          notLoginedPages[this.state.page]}
       </main>
     );
   }
 }
 
-  
 
- 
+
+
 

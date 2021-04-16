@@ -10,18 +10,38 @@ import { useAuth0 } from "@auth0/auth0-react";
 
 const useStyles = makeStyles({
   root: {
-    minWidth: 1000,
+    //minWidth: 1000,
     display:'flex',
     justifyContent:'center',
+    marginTop: "79px",
+    height: "236px",
+    width: "604px",
    
   },
 
   title: {
-    fontSize: 16,
+    fontSize: "16pt",
+    display: "flex",
+    justifyContent:"center",
+    marginTop: "17px",
   },
   pos: {
-    marginBottom: 5,
+    display: "flex",
+    justifyContent: "center",
+    marginTop: "14px"
   },
+  smallerText:
+  {
+    marginTop: "14px",
+    display:"flex",
+    justifyContent:"center",
+  },
+  buttonStyle:
+  {
+    marginTop:"14px",
+    display: "flex",
+    justifyContent:"center",
+  }
 });
 
 export default function LoginPage() {
@@ -42,23 +62,21 @@ export default function LoginPage() {
     <Grid item xs={12}>
     <Card className={classes.root} >
       <CardContent>
-        <Typography className={classes.title} color="textSecondary" gutterBottom>
-          Thank you for voting with Us!
-        </Typography>
-        <Typography variant="h5" component="h2">
+        <Typography variant="h5" component="h2" className={classes.title}>
           Login or Register to Vote
         </Typography>
         <Typography className={classes.pos} color="textSecondary">
           Login through our secure Auth0 Provider
         </Typography>
-        <Typography variant="body2" component="p">
+        <Typography variant="body2" component="p" className={classes.smallerText}>
           Once a new account is created, an email will be sent to you to verifiy your account.
           <br />
         
         </Typography>
-      </CardContent>
+      
       <CardActions>
          <Button 
+         className={classes.buttonStyle}
          fullWidth
          variant="outlined" 
          color="primary" 
@@ -66,6 +84,7 @@ export default function LoginPage() {
          > Auth0 Log In
          </Button>
       </CardActions>
+      </CardContent>
     </Card>
     </Grid>
     </Grid>
